@@ -1,0 +1,38 @@
+﻿@model MovieApp.Models.Movie
+
+@{
+    ViewBag.Title = "MovieAddition";
+   
+}
+
+<h2>Add Movie</h2>
+
+@Html.ValidationSummary(false, "", new { @class = "text-danger" })
+
+@using (Html.BeginForm())
+{
+    <p>Enter the movie title:</p>
+    <p>@Html.EditorFor(m => m.title)  </p> <br />
+
+    <p>When was the movie released: (MM/yyyy)</p>
+    <p>@Html.EditorFor(m => m.releaseDate)</p> <br />
+
+    <p>Select a genre from the dropdown box: </p>
+    @Html.DropDownListFor(m => m.genre,
+    new[] { new SelectListItem { Text = "Horror", Value = "Horror"},
+            new SelectListItem { Text = "Comedy", Value = "Comedy"},
+            new SelectListItem { Text = "Drama", Value = "Drama"},
+            new SelectListItem { Text = "Thriller", Value = "Thriller"},
+            new SelectListItem { Text = "Action", Value = "Action"},
+            new SelectListItem { Text = "Documentary", Value = "Documentary"}},
+            " ---- Choose Genre ---- ") <br /> <br/>
+
+            <p>Price: </p>
+            <p>@Html.EditorFor(m => m.price)</p> <br />
+
+            <p>Check the box if the movie is on Discount: </p>
+            @Html.CheckBoxFor(m => m.onDiscount) <br/> <br/>
+
+            <input type="submit" value="Add Movie" />
+}
+
